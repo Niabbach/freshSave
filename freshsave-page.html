@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshSave - Votre frigo a de la mémoire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #7BC043;
+            --dark-blue: #2B4C7E;
+            --light-green: #A8D96E;
+            --cream: #FFFEF7;
+            --white: #FFFFFF;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-blue);
+            overflow-x: hidden;
+            background: var(--cream);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(43, 76, 126, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: var(--dark-blue);
+            margin-top: -0.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-btn {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(123, 192, 67, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2B4C7E 0%, #3D5A8E 100%);
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(123, 192, 67, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(123, 192, 67, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-highlight {
+            color: var(--primary-green);
+        }
+
+        .hero-tagline {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--light-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(123, 192, 67, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Phone Mockup in Hero */
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .phone-frame {
+            background: var(--dark-blue);
+            border-radius: 50px;
+            padding: 20px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+            max-width: 450px;
+            margin: 0 auto;
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.5s ease;
+        }
+
+        .phone-frame:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .phone-screen {
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 40px;
+            padding: 2.5rem 1.5rem;
+            min-height: 700px;
+            position: relative;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-header h3 {
+            color: var(--dark-blue);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-header p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideInLeft 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .product-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .product-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .product-date {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .expiry-badge {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .expiry-badge.urgent {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .expiry-badge.ok {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .logo-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--light-gray);
+            padding: 3rem 2.5rem;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-green) 0%, var(--light-green) 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: var(--white);
+            box-shadow: 0 20px 50px rgba(43, 76, 126, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .steps-container {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(123, 192, 67, 0.3);
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .step p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 2rem;
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            position: relative;
+        }
+
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* Target Audience */
+        .audience {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .audience-grid {
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-card {
+            background: var(--light-gray);
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+        }
+
+        .audience-card:hover {
+            background: var(--white);
+            border-color: var(--primary-green);
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(123, 192, 67, 0.2);
+        }
+
+        .audience-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .audience-card h3 {
+            font-size: 1.4rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .audience-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            background: var(--white);
+            color: var(--dark-blue);
+            padding: 1.2rem 3rem;
+            border-radius: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .phone-frame {
+                margin-top: 3rem;
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons,
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            .btn,
+            .store-btn {
+                width: 100%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo FreshSave" class="logo-img">
+            </div>
+
+            <div class="nav-links">
+                <a href="#features">Fonctionnalités</a>
+                <a href="#how-it-works">Comment ça marche</a>
+                <a href="#audience">Pour qui ?</a>
+                <button class="nav-btn">Télécharger</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Ne gaspillez plus, <span class="hero-highlight">mémorisez mieux</span></h1>
+                <p class="hero-tagline">« Votre frigo a de la mémoire »</p>
+                <p class="hero-description">
+                    FreshSave vous aide à consommer tous vos produits avant qu'ils ne périment. 
+                    Scannez vos tickets, recevez des rappels intelligents et cuisinez avec ce qu'il vous reste. 
+                    Simple, efficace, écologique.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Télécharger l'app</button>
+                    <button class="btn btn-secondary">Voir la démo</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="app-header">
+                            <h3>Mon Frigo</h3>
+                            <p>12 produits suivis</p>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-icon">🥛</div>
+                            <div class="product-info">
+                                <div class="product-name">Lait demi-écrémé</div>
+                                <div class="product-date">Expire dans 2 jours</div>
+                            </div>
+                            <div class="expiry-badge urgent">Urgent</div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-icon">🥗</div>
+                            <div class="product-info">
+                                <div class="product-name">Salade verte</div>
+                                <div class="product-date">Expire dans 5 jours</div>
+                            </div>
+                            <div class="expiry-badge">Bientôt</div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-icon">🧀</div>
+                            <div class="product-info">
+                                <div class="product-name">Fromage râpé</div>
+                                <div class="product-date">Expire dans 12 jours</div>
+                            </div>
+                            <div class="expiry-badge ok">OK</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2 class="section-title">Une application complète</h2>
+            <p class="section-subtitle">
+                Toutes les fonctionnalités dont vous avez besoin pour réduire le gaspillage alimentaire facilement
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Scanner intelligent</h3>
+                <p>Photographiez vos tickets de caisse et laissez notre OCR reconnaître automatiquement tous vos produits et leurs dates de péremption.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔔</div>
+                <h3>Rappels personnalisés</h3>
+                <p>Recevez des notifications au bon moment, adaptées à vos habitudes de consommation et au type de produit.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🍳</div>
+                <h3>Recettes sur mesure</h3>
+                <p>Des suggestions de recettes basées sur ce qu'il vous reste dans le frigo. Cuisinez malin, zéro gaspillage.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Suivi d'impact</h3>
+                <p>Visualisez vos économies financières et votre impact environnemental. Chaque kilo compte !</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <h2 class="section-title">Comment ça marche ?</h2>
+            <p class="section-subtitle">En 4 étapes simples pour réduire votre gaspillage</p>
+        </div>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Scannez</h3>
+                <p>Prenez en photo votre ticket de caisse après vos courses</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Automatique</h3>
+                <p>L'app reconnaît vos produits et leurs dates de péremption</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Rappels</h3>
+                <p>Notifications intelligentes avant que vos produits périment</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Cuisinez</h3>
+                <p>Recettes adaptées pour utiliser ce qu'il vous reste</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="section-header">
+            <h2 class="section-title" style="color: white;">L'impact FreshSave</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">
+                Des résultats concrets pour votre budget et la planète
+            </p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">-30%</div>
+                <div class="stat-label">de gaspillage alimentaire</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100€</div>
+                <div class="stat-label">économisés par an en moyenne</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50kg</div>
+                <div class="stat-label">de nourriture sauvée par an</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience -->
+    <section class="audience" id="audience">
+        <div class="section-header">
+            <h2 class="section-title">FreshSave est fait pour vous</h2>
+            <p class="section-subtitle">Que vous soyez étudiant, actif, en famille ou écoresponsable</p>
+        </div>
+        <div class="audience-grid">
+            <div class="audience-card">
+                <div class="audience-icon">🎓</div>
+                <h3>Étudiants</h3>
+                <p>Budget serré et emploi du temps chargé ? FreshSave optimise vos courses et réduit vos dépenses.</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">💼</div>
+                <h3>Jeunes actifs</h3>
+                <p>Peu de temps pour gérer le frigo ? Laissez FreshSave s'en occuper pour vous.</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">👨‍👩‍👧‍👦</div>
+                <h3>Familles</h3>
+                <p>Achats en grande quantité ? Gérez facilement tous vos produits et ne gaspillez plus.</p>
+            </div>
+            <div class="audience-card">
+                <div class="audience-icon">🌱</div>
+                <h3>Écoresponsables</h3>
+                <p>Sensible à votre impact environnemental ? Agissez concrètement contre le gaspillage.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Prêt à dire stop au gaspillage ?</h2>
+        <p>Rejoignez des milliers d'utilisateurs qui économisent et protègent la planète</p>
+        <div class="download-buttons">
+            <a href="#" class="store-btn">
+                <span style="font-size: 2rem;"></span>
+                <div>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">Télécharger sur</div>
+                    <div>App Store</div>
+                </div>
+            </a>
+            <a href="#" class="store-btn">
+                <span style="font-size: 2rem;"></span>
+                <div>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">Disponible sur</div>
+                    <div>Google Play</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" alt="Logo FreshSave" style="height:60px; margin-bottom:1rem;">
+                <p>Votre frigo a de la mémoire. Ensemble, réduisons le gaspillage alimentaire et préservons notre planète, un produit à la fois.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Produit</h4>
+                <ul>
+                    <li><a href="#">Fonctionnalités</a></li>
+                    <li><a href="#">Tarifs</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Entreprise</h4>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Carrières</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Aide</a></li>
+                    <li><a href="#">CGU</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 FreshSave - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(30px)';
+                    entry.target.style.transition = 'all 0.6s ease-out';
+                    
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .audience-card, .step').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const text = statNumber.textContent;
+                    
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item').forEach(el => {
+            statsObserver.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
